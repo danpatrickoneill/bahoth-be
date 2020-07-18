@@ -30,4 +30,12 @@ class Room(models.Model):
   card = models.IntegerField(choices=CARD_CHOICES)
   effect = models.CharField(max_length=100)
 
+class Item(models.Model):
+  name = models.CharField(max_length=100)
+  description = models.TextField(blank=True)
+  # Could this be a "holder/location" field that could be either a character or room? Could be useful
+  character = models.ForeignKey(
+    'Character',
+    on_delete=models.CASCADE
+  )
 

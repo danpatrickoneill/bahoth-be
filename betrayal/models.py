@@ -14,6 +14,8 @@ class Character(models.Model):
   might = models.IntegerField()
   sanity = models.IntegerField()
   knowledge = models.IntegerField()
+  hero = models.BooleanField(default=False)
+  traitor = models.BooleanField(default=False)
 
 class Room(models.Model):
     ITEM = 'I'
@@ -38,4 +40,8 @@ class Item(models.Model):
     'Character',
     on_delete=models.CASCADE
   )
+  omen = models.BooleanField(default=False)
 
+# Would it make sense to have a separate monster model? Could have a more basic "living thing" model that other can inherit from. 
+# I don't think heros and traitors would need a distinct model, but then the standard character model might need some rarely used fields
+# Game manual calls PCs "explorers"; both they and monsters could inherit from character

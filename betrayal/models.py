@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from uuid import uuid4
 
-# Create your models here.
+# Does it make sense to have a Game model that could be saved as an instance with Chars linked to it? Good to research
 class Character(models.Model):
   user = user.OneToOneField(User, on_delete=models.CASCADE)
   name = models.CharField(max_length=100)

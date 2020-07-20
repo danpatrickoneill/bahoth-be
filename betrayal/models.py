@@ -4,20 +4,27 @@ from uuid import uuid4
 
 # Does it make sense to have a Game model that could be saved as an instance with Chars linked to it? Good to research
 class Character(models.Model):
-  user = user.OneToOneField(User, on_delete=models.CASCADE)
   name = models.CharField(max_length=100)
   description = models.TextField(blank=True)
+  speed = models.IntegerField()
+  might = models.IntegerField()
+  sanity = models.IntegerField()
+  knowledge = models.IntegerField()
+
+  class Meta:
+    abstract = True
+
+class PlayerCharacter(Character):
+  user = user.OneToOneField(User, on_delete=models.CASCADE)
   age = models.IntegerField()
   height = models.IntegerField()
   weight = models.IntegerField()
   birthday = models.DateField()
   hobbies = models.CharField(max_length=100)
-  speed = models.IntegerField()
-  might = models.IntegerField()
-  sanity = models.IntegerField()
-  knowledge = models.IntegerField()
   hero = models.BooleanField(default=False)
   traitor = models.BooleanField(default=False)
+
+class Monster(Character):
 
 class Room(models.Model):
     ITEM = 'I'
